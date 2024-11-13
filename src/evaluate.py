@@ -12,6 +12,56 @@ X_train, X_test, y_train, y_test = load_and_prepare_data(data_path='data/diabete
 print('Wczytywanie modelu... -', os.path.basename(__file__))
 model = load_model('models/model-v1.keras')  # Zmień nazwę modelu, jeśli jest inna
 
+# Pobranie wag z warstw modelu
+print('Pobieranie wag... -', os.path.basename(__file__))
+hidden_layer_weights = model.layers[0].get_weights()[0]  # Wagi warstwy ukrytej
+hidden_layer_biases = model.layers[0].get_weights()[1]   # Przesunięcia warstwy ukrytej
+
+output_weights = model.layers[1].get_weights()[0]  # Wagi warstwy wyjściowej
+output_biases = model.layers[1].get_weights()[1]   # Przesunięcia warstwy wyjściowej
+
+# Wizualizacja wag dla warstwy ukrytej z etykietami
+plt.figure(figsize=(10, 5))
+plt.bar(range(len(hidden_layer_weights.flatten())), hidden_layer_weights.flatten(), color='blue')
+plt.xlabel('Indeks wagi')
+plt.ylabel('Wartość wagi')
+plt.title('Wizualizacja wag w warstwie ukrytej')
+plt.show()
+
+# Wizualizacja przesunięć (bias) dla warstwy ukrytej z etykietami
+plt.figure(figsize=(10, 5))
+plt.bar(range(len(hidden_layer_biases)), hidden_layer_biases, color='orange')
+for i, value in enumerate(hidden_layer_biases):
+    plt.text(i, value, f'{value:.2f}', ha='center', va='bottom' if value > 0 else 'top', fontsize=8)
+plt.xlabel('Indeks przesunięcia')
+plt.ylabel('Wartość przesunięcia')
+plt.title('Wizualizacja przesunięć (bias) w warstwie ukrytej')
+plt.show()
+
+# Pobranie wag i przesunięć z warstwy wyjściowej (drugiej warstwy Dense)
+output_layer_weights = model.layers[1].get_weights()[0]  # Wagi warstwy wyjściowej
+output_layer_biases = model.layers[1].get_weights()[1]   # Przesunięcia warstwy wyjściowej
+
+# Wizualizacja wag dla warstwy wyjściowej z etykietami
+plt.figure(figsize=(10, 5))
+plt.bar(range(len(output_layer_weights.flatten())), output_layer_weights.flatten(), color='green')
+for i, value in enumerate(output_layer_weights.flatten()):
+    plt.text(i, value, f'{value:.2f}', ha='center', va='bottom' if value > 0 else 'top', fontsize=8)
+plt.xlabel('Indeks wagi')
+plt.ylabel('Wartość wagi')
+plt.title('Wizualizacja wag w warstwie wyjściowej')
+plt.show()
+
+# Wizualizacja przesunięcia (bias) dla warstwy wyjściowej
+plt.figure(figsize=(5, 5))
+plt.plot(output_layer_biases, color='red', marker='o')
+for i, value in enumerate(output_layer_biases):
+    plt.text(i, value, f'{value:.2f}', ha='center', va='bottom' if value > 0 else 'top', fontsize=8)
+plt.xlabel('Indeks przesunięcia')
+plt.ylabel('Wartość przesunięcia')
+plt.title('Wizualizacja przesunięcia (bias) w warstwie wyjściowej')
+plt.show()
+
 # Przewidywania na zbiorach treningowym i walidacyjnym
 print('Przewidywanie... -', os.path.basename(__file__))
 train_predictions = model.predict(X_train)

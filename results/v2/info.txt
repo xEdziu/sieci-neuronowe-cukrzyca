@@ -1,0 +1,1 @@
+model przez earlyStopping zakończył się po 22 epokach nauczania

@@ -6,7 +6,7 @@ import seaborn as sns
 import codecs
 import os
 
-output_file_path = os.path.join("results","v1","model_results.txt")
+output_file_path = os.path.join("results","v2","model_results.txt")
 os.makedirs("results", exist_ok=True)
 
 # Wczytanie i przygotowanie danych
@@ -15,7 +15,7 @@ X_train, X_test, y_train, y_test = load_and_prepare_data(data_path='data/diabete
 
 # Wczytanie wytrenowanego modelu
 print('Wczytywanie modelu... -', os.path.basename(__file__))
-model = load_model('models/model-v1.keras')  # Zmień nazwę modelu, jeśli jest inna
+model = load_model('models/model-v2.keras')  # Zmień nazwę modelu, jeśli jest inna
 model.summary() # Wyświetlenie podsumowania modelu
 
 # Pobranie wag z warstw modelu

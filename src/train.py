@@ -1,6 +1,7 @@
 from data_preparation import load_and_prepare_data
 from model import create_model
 import matplotlib.pyplot as plt
+from tensorflow.keras.callbacks import EarlyStopping
 import os
 
 # Wczytanie i przygotowanie danych

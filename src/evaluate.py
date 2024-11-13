@@ -2,11 +2,12 @@ from data_preparation import load_and_prepare_data
 from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, accuracy_score, confusion_matrix
+from sklearn.metrics import precision_score, recall_score, f1_score
 import seaborn as sns
 import codecs
 import os
 
-output_file_path = os.path.join("results","v2","model_results.txt")
+output_file_path = os.path.join("results","v1","model_results.txt")
 os.makedirs("results", exist_ok=True)
 
 # Wczytanie i przygotowanie danych
@@ -15,7 +16,7 @@ X_train, X_test, y_train, y_test = load_and_prepare_data(data_path='data/diabete
 
 # Wczytanie wytrenowanego modelu
 print('Wczytywanie modelu... -', os.path.basename(__file__))
-model = load_model('models/model-v2.keras')  # Zmień nazwę modelu, jeśli jest inna
+model = load_model('models/model-v1.keras')  # Zmień nazwę modelu, jeśli jest inna
 model.summary() # Wyświetlenie podsumowania modelu
 
 # Pobranie wag z warstw modelu
@@ -128,6 +129,15 @@ train_mse = mean_squared_error(y_train, train_predictions_binary)
 test_mse = mean_squared_error(y_test, test_predictions_binary)
 cm = confusion_matrix(y_test, test_predictions_binary)
 
+# Obliczenie precyzji, czułości i F1-score na zbiorze walidacyjnym
+precision = precision_score(y_test, test_predictions_binary)
+recall = recall_score(y_test, test_predictions_binary)
+f1 = f1_score(y_test, test_predictions_binary)
+
+print(f'Precyzja: {precision:.4f}')
+print(f'Czułość: {recall:.4f}')
+print(f'F1-score: {f1:.4f}')
+
 # Zapis wyników do pliku tekstowego
 with codecs.open(output_file_path, "w", "utf-8-sig") as file:
     file.write("Wyniki modelu sieci neuronowej\n")
@@ -150,5 +160,9 @@ with codecs.open(output_file_path, "w", "utf-8-sig") as file:
     file.write("Przesunięcia warstwy wyjściowej:\n")
     file.write(f"{output_layer_biases}\n")
     file.write("====================================\n")
+    file.write("\nDodatkowe metryki klasyfikacji:\n")
+    file.write(f"Precyzja: {precision:.4f}\n")
+    file.write(f"Czułość: {recall:.4f}\n")
+    file.write(f"F1-score: {f1:.4f}\n")
 
 print(f"Wyniki zostały zapisane w pliku: {output_file_path}")

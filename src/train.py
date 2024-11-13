@@ -23,8 +23,6 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-# history = model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_test, y_test))
-
 # Wizualizacja strat (binary crossentropy) na danych treningowych i walidacyjnych
 plt.plot(history.history['loss'], label='Strata treningowa')
 plt.plot(history.history['val_loss'], label='Strata walidacyjna')

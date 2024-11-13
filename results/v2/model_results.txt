@@ -55,3 +55,8 @@ Wagi warstwy wyjściowej:
 Przesunięcia warstwy wyjściowej:
 [-0.7627994]
 ====================================
+
+Dodatkowe metryki klasyfikacji:
+Precyzja: 0.9160
+Czułość: 0.6253
+F1-score: 0.7432

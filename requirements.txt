@@ -29,6 +29,7 @@ packaging==24.2
 pandas==2.2.3
 pillow==11.0.0
 protobuf==5.28.3
+pydot==3.0.2
 Pygments==2.18.0
 pyparsing==3.2.0
 python-dateutil==2.9.0.post0
@@ -37,6 +38,7 @@ requests==2.32.3
 rich==13.9.4
 scikit-learn==1.5.2
 scipy==1.14.1
+seaborn==0.13.2
 six==1.16.0
 tensorboard==2.18.0
 tensorboard-data-server==0.7.2

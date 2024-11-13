@@ -1,5 +1,6 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.optimizers import Adam
 import os
 
 def create_model(input_shape):
@@ -17,7 +18,11 @@ def create_model(input_shape):
     
     # Kompilacja modelu
     print('Kompilacja modelu...')
-    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    
+    #Ustawienie optymalizatora, funkcji straty i metryki
+    optimizer = Adam(learning_rate=0.001)
+    
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
     
     print('Gotowe - model utworzony! -', os.path.basename(__file__))
     return model

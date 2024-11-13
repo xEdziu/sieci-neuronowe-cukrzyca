@@ -21,7 +21,6 @@ plt.ylabel('Binary Crossentropy Loss')
 plt.legend()
 plt.title('Wykres błędu Binary Crossentropy')
 plt.show()
-plt.savefig('results/plots/loss.png')
 
 # Wizualizacja dokładności na danych treningowych i walidacyjnych
 plt.plot(history.history['accuracy'], label='Dokładność treningowa')
@@ -31,7 +30,6 @@ plt.ylabel('Dokładność')
 plt.legend()
 plt.title('Wykres dokładności')
 plt.show()
-plt.savefig('results/plots/accuracy.png')
 
 choice = input('Czy zapisać model? (t/n): ')
 if choice.lower() == 't':

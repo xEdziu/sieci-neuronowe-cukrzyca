@@ -12,6 +12,7 @@ model = create_model(input_shape=X_train.shape[1])
 # Ustawienie callback'u EarlyStopping
 early_stopping = EarlyStopping(monitor='val_loss', patience=5, min_delta=0.001, restore_best_weights=True)
 
+print('Trenowanie modelu... -', os.path.basename(__file__))
 # Trenowanie modelu z EarlyStopping
 history = model.fit(
     X_train, y_train,
@@ -21,8 +22,6 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-# Trenowanie modelu
-print('Trenowanie modelu... -', os.path.basename(__file__))
 # history = model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_test, y_test))
 
 # Wizualizacja strat (binary crossentropy) na danych treningowych i walidacyjnych

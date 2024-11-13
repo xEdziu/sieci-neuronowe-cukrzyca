@@ -9,9 +9,21 @@ X_train, X_test, y_train, y_test = load_and_prepare_data(data_path='data/diabete
 # Utworzenie modelu
 model = create_model(input_shape=X_train.shape[1])
 
+# Ustawienie callback'u EarlyStopping
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, min_delta=0.001, restore_best_weights=True)
+
+# Trenowanie modelu z EarlyStopping
+history = model.fit(
+    X_train, y_train,
+    epochs=50,
+    batch_size=16,
+    validation_data=(X_test, y_test),
+    callbacks=[early_stopping]
+)
+
 # Trenowanie modelu
 print('Trenowanie modelu... -', os.path.basename(__file__))
-history = model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_test, y_test))
+# history = model.fit(X_train, y_train, epochs=50, batch_size=16, validation_data=(X_test, y_test))
 
 # Wizualizacja strat (binary crossentropy) na danych treningowych i walidacyjnych
 plt.plot(history.history['loss'], label='Strata treningowa')

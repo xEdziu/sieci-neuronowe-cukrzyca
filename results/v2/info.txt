@@ -1,3 +1,4 @@
-model przez earlyStopping zakończył się po 22 epokach nauczania
+model przez earlyStopping zakończył się po 22/50 epokach nauczania
 customowe ustawienie learning rate optimizera ADAM = 0.001
 trenowanie z earlyStopping = EarlyStopping(monitor='val_loss', patience=5, min_delta=0.001, restore_best_weights=True)
+batch_size = 16

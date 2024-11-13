@@ -1,0 +1,3 @@
+model zakończył trenowanie po wszystkich (50) epokach
+customowe ustawienie learning rate optimizera ADAM = brak -> domyślne
+trenowanie bez earlyStopping

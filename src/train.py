@@ -41,6 +41,28 @@ plt.legend()
 plt.title('Wykres dokładności')
 plt.show()
 
+
+# Wykres błędu klasyfikacji na przestrzeni epok
+train_classification_error = [1 - acc for acc in history.history['accuracy']]
+val_classification_error = [1 - acc for acc in history.history['val_accuracy']]
+
+plt.plot(train_classification_error, label='Błąd klasyfikacji treningowy')
+plt.plot(val_classification_error, label='Błąd klasyfikacji walidacyjny')
+plt.xlabel('Epoki')
+plt.ylabel('Błąd klasyfikacji')
+plt.legend()
+plt.title('Błąd klasyfikacji na przestrzeni epok')
+plt.show()
+
+# Wykres MSE na przestrzeni epok
+plt.plot(history.history['mean_squared_error'], label='MSE treningowy')
+plt.plot(history.history['val_mean_squared_error'], label='MSE walidacyjny')
+plt.xlabel('Epoki')
+plt.ylabel('Mean Squared Error (MSE)')
+plt.legend()
+plt.title('MSE na przestrzeni epok')
+plt.show()
+
 choice = input('Czy zapisać model? (t/n): ')
 if choice.lower() == 't':
     name = input('Podaj nazwę modelu: ')

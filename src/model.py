@@ -1,6 +1,7 @@
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.metrics import MeanSquaredError
 import os
 
 def create_model(input_shape):
@@ -22,7 +23,7 @@ def create_model(input_shape):
     #Ustawienie optymalizatora, funkcji straty i metryki
     optimizer = Adam(learning_rate=0.001)
     
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy', MeanSquaredError()])
     
     print('Gotowe - model utworzony! -', os.path.basename(__file__))
     return model

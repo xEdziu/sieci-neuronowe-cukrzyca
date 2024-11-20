@@ -1,4 +1,4 @@
 model zakończył trenowanie po wszystkich (50) epokach
-customowe ustawienie learning rate optimizera ADAM = brak -> domyślne
+customowe ustawienie learning rate optimizera ADAM = 0.001
 trenowanie bez earlyStopping
 batch_size = 16
